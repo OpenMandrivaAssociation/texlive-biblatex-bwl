@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-biblatex-bwl
 Version:	0.02
-Release:	2
+Release:	3
 Summary:	TeXLive biblatex-bwl package
 Group:		Publishing
 URL:		http://tug.org/texlive
