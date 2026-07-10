@@ -1,43 +1,24 @@
-Name:		texlive-biblatex-bwl
-Version:	26556
-Release:	2
-Summary:	TeXLive biblatex-bwl package
+%global tl_name biblatex-bwl
+%global tl_revision 26556
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	0.02
+Release:	%{tl_revision}.1
+Summary:	BibLaTeX citations for FU Berlin
 Group:		Publishing
-URL:		https://tug.org/texlive
-License:	http://www.tug.org/texlive/LICENSE.TL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/biblatex-bwl.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/biblatex-bwl.doc.r%{version}.tar.xz
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/biblatex-contrib/biblatex-bwl
+License:	lppl1.3
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/biblatex-bwl.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/biblatex-bwl.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-TeXLive biblatex-bwl package.
+The bundle provides a set of BibLaTeX implementations of bibliography
+and citation styles for the Business Administration Department of the
+Free University of Berlin.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/latex/biblatex-bwl/bwl-FU.bbx
-%{_texmfdistdir}/tex/latex/biblatex-bwl/bwl-FU.cbx
-%doc %{_texmfdistdir}/doc/latex/biblatex-bwl/Changes
-%doc %{_texmfdistdir}/doc/latex/biblatex-bwl/doc/bwl-FU.bib
-%doc %{_texmfdistdir}/doc/latex/biblatex-bwl/doc/bwl-FU.pdf
-%doc %{_texmfdistdir}/doc/latex/biblatex-bwl/doc/bwl-FU.tex
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex doc %{buildroot}%{_texmfdistdir}
